@@ -8,5 +8,7 @@ public class ClasePrincipal {
         animal=new Gato();
         animal.emitirSonido();
         animal.dormir();
+
+
     }
 }
