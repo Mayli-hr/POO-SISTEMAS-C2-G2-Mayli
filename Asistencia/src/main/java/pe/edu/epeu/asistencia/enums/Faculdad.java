@@ -1,6 +1,6 @@
 package pe.edu.epeu.asistencia.enums;
 
-public enum FACULTAD {
+public enum Faculdad {
     FIA,
     FCE,
     FCS,
