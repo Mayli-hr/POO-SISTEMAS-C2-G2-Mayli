@@ -11,26 +11,25 @@ public class ParticipanteServicioImp extends ParticipanteRepositorio implements 
     //List<Estudiante> listaEstudiante= new ArrayList<>();
     @Override
     public void save(Participante participante) {
-        listaParticipante.add(participante);
+        super.ssave(participante);
     }
+
 
     @Override
     public List<Participante> findAll() {
-        if(listaParticipante.isEmpty()){
-            return super.findAll();
-        }
-        return listaParticipante;
+
+        return super.findAll();
     }
 
     @Override
-    public void update(Participante participante, int index) {
-        listaParticipante.set(index, participante);
+    public Participante update(Participante participante) {
+       return super.update(participante);
 
-    }
+    } public void delete(Participante p){}
 
     @Override
-    public void delete(int index) {
-        listaParticipante.remove(index);
+    public void delete(String dni) {
+        super.delete(dni);
 
     }
 

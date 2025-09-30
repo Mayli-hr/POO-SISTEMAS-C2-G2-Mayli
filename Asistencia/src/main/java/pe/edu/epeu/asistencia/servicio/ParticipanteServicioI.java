@@ -9,10 +9,10 @@ public interface ParticipanteServicioI {
 
     List<Participante> findAll();
 
-    void update(Participante participante, int index);
+    Participante update(Participante participante);
 
 
-    void delete(int index);
-    Participante findById(int index);
+    void delete(String dni);
+    Participante findById(int index );
 
 }
