@@ -28,8 +28,8 @@ ParticipanteServicioI participanteServicioI;
     @FXML
     void regEstudiante(){
         Participante participante =new Participante();
-        participante.setNombre(new SimpleStringProperty(txtDato.getText()));
-        participante.setEstado(new SimpleBooleanProperty(true));
+        participante.setNombre(txtDato.getText());
+        participante.setEstado(true);
         participanteServicioI.save(participante);
         listarEstudiantes();
     }

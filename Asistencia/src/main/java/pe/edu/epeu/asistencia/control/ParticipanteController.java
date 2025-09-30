@@ -56,12 +56,12 @@ public class ParticipanteController {
     @FXML
     public void registrarParticipante(){
         Participante p = new Participante();
-        p.setDni(new SimpleStringProperty(txtDni.getText()));
-        p.setNombre(new SimpleStringProperty(txtNombre.getText()));
-        p.setApellido(new SimpleStringProperty(txtApellidos.getText()));
+        p.setDni(txtDni.getText());
+        p.setNombre((txtNombre.getText()));
+        p.setApellido((txtApellidos.getText()));
         p.setCarrera(bcxCarrera.getSelectionModel().getSelectedItem());
         p.setTipoParticipante(tbxTipoParticipante.getSelectionModel().getSelectedItem());
-        p.setEstado(new SimpleBooleanProperty(true));
+        p.setEstado(true);
         if(indexE==-1) {
 
             ps.save(p);
@@ -96,7 +96,7 @@ public class ParticipanteController {
                         });
                         eliminarBtn.setOnAction((event)->{
                             Participante p =getTableView().getItems().get(getIndex());
-                            eliminarParticipante(p.getDni().getValue());
+                            eliminarParticipante(p.getDni());
                         });
                     }
 
@@ -118,9 +118,16 @@ public class ParticipanteController {
 
 
     public void listaParticipante(){
-        dniColum.setCellValueFactory(cellData->cellData.getValue().getDni());
-        nombreColum.setCellValueFactory(cellData->cellData.getValue().getNombre());
-        apellidoColum.setCellValueFactory(cellData->cellData.getValue().getApellido());
+        dniColum.setCellValueFactory(cellData->
+                new SimpleStringProperty(cellData.getValue().getDni()));
+
+        nombreColum.setCellValueFactory(cellData->
+                new SimpleStringProperty(cellData.getValue().getNombre()));
+
+
+        apellidoColum.setCellValueFactory(cellData->
+                new SimpleStringProperty(cellData.getValue().getApellido()));
+
 
         carreraColum.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getCarrera().toString()));
         agregarAccionBotones();
@@ -132,9 +139,9 @@ public class ParticipanteController {
         listaParticipante();
     }
     public void editarParticipante(Participante p, int index){
-        txtDni.setText(p.getDni().getValue());
+        txtDni.setText(p.getDni());
         txtNombre.setText(p.getNombre().toString());
-        txtApellidos.setText(p.getApellido().getValue());
+        txtApellidos.setText(p.getApellido());
         bcxCarrera.setValue(p.getCarrera());
         tbxTipoParticipante.setValue(p.getTipoParticipante());
         indexE=index;

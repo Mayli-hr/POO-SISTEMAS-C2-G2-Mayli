@@ -13,6 +13,6 @@ public interface ParticipanteServicioI {
 
 
     void delete(String dni);
-    Participante findById(int index );
+    Participante findById(String dni );
 
 }
