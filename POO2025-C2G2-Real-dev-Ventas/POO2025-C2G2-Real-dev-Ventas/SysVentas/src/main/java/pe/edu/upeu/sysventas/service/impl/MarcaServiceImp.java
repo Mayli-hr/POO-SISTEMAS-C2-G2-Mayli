@@ -1,11 +1,16 @@
 package pe.edu.upeu.sysventas.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import pe.edu.upeu.sysventas.dto.ComboBoxOption;
 import pe.edu.upeu.sysventas.model.Marca;
 import pe.edu.upeu.sysventas.repository.ICrudGenericoRepository;
 import pe.edu.upeu.sysventas.repository.MarcaRepository;
 import pe.edu.upeu.sysventas.service.IMarcaService;
 
+import java.util.ArrayList;
+import java.util.List;
+@Service
 @RequiredArgsConstructor
 public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long> implements IMarcaService {
     private final MarcaRepository marcaRepository;
@@ -13,5 +18,17 @@ public class MarcaServiceImp extends CrudGenericoServiceImp<Marca, Long> impleme
     @Override
     protected ICrudGenericoRepository<Marca, Long> getRepo() {
         return marcaRepository;
+    }
+    @Override
+    public List<ComboBoxOption> listarCombobox() {
+        List<ComboBoxOption> listar=new ArrayList<>();
+        ComboBoxOption cb;
+        for(Marca cate : marcaRepository.findAll()) {
+            cb=new ComboBoxOption();
+            cb.setKey(String.valueOf(cate.getIdMarca()));
+            cb.setValue(cate.getNombre());
+            listar.add(cb);
+        }
+        return listar;
     }
 }
